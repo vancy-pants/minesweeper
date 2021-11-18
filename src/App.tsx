@@ -1,77 +1,24 @@
+import { useState } from "react";
+import CellComponent from "./components/CellComponent";
+import { generateCells } from "./lib/utils";
 import "./styles/App.css";
-import { Cell } from "./types/Cell";
 
 function App() {
-  const cells: Cell[][] = [
-    [
-      {
-        isBomb: false,
-        adjacentBombsCount: 1,
-        isHidden: true,
-        isFlagged: false,
-      },
-      {
-        isBomb: false,
-        adjacentBombsCount: 1,
-        isHidden: true,
-        isFlagged: false,
-      },
-      {
-        isBomb: false,
-        adjacentBombsCount: 1,
-        isHidden: true,
-        isFlagged: false,
-      },
-    ],
-    [
-      {
-        isBomb: false,
-        adjacentBombsCount: 1,
-        isHidden: true,
-        isFlagged: false,
-      },
-      {
-        isBomb: true,
-        adjacentBombsCount: 0,
-        isHidden: true,
-        isFlagged: false,
-      },
-      {
-        isBomb: false,
-        adjacentBombsCount: 1,
-        isHidden: true,
-        isFlagged: false,
-      },
-    ],
-    [
-      {
-        isBomb: false,
-        adjacentBombsCount: 1,
-        isHidden: true,
-        isFlagged: false,
-      },
-      {
-        isBomb: false,
-        adjacentBombsCount: 1,
-        isHidden: true,
-        isFlagged: false,
-      },
-      {
-        isBomb: false,
-        adjacentBombsCount: 1,
-        isHidden: true,
-        isFlagged: false,
-      },
-    ],
-  ];
+  // TODO: will have a way to reset the game, so we'll need the setCells eventually
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [cellGrid, setCellGrid] = useState(() => generateCells());
 
   return (
     <div className="App">
-      {cells.map((items) => {
-        const rowItems = items.map((item) => (
-          <div className="cell">{item.isBomb.toString()}</div>
+      {cellGrid.map((rows, i) => {
+        const rowOfCells = rows.map((cell, index) => (
+          <CellComponent key={index} isBomb={cell.isBomb} />
         ));
-        return <div className="row">{rowItems}</div>;
+        return (
+          <div key={i} className="row">
+            {rowOfCells}
+          </div>
+        );
       })}
     </div>
   );
