@@ -30,18 +30,23 @@ function App() {
     setCellGrid(updatedGrid);
   };
 
+  const handleCellClicked = (row: number, column: number, isBomb: boolean) => {
+    if (isBomb) {
+      alert("Game over!");
+    }
+  };
+
   return (
     <div className="App">
       {cellGrid.map((rows, i) => {
         const rowOfCells = rows.map((cell, index) => (
           <CellComponent
             key={index}
-            isBomb={cell.isBomb}
-            isFlagged={cell.isFlagged}
-            isHidden={cell.isHidden}
+            cell={cell}
             row={i}
             column={index}
             updateCell={handleUpdateCell}
+            onClick={handleCellClicked}
           />
         ));
         return (
