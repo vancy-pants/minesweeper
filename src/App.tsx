@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CellComponent from "./components/CellComponent";
 import { generateCells } from "./lib/utils";
+import { Cell } from "./types/Cell";
 import "./styles/App.css";
 
 function App() {
@@ -9,9 +10,9 @@ function App() {
   const handleUpdateCell = (
     row: number,
     column: number,
-    isFlagged: boolean
+    values: Partial<Cell>
   ) => {
-    const updatedCell = { ...cellGrid[row][column], isFlagged };
+    const updatedCell = { ...cellGrid[row][column], ...values };
 
     const updatedRow = cellGrid[row].map((currentCell, columnNum) => {
       if (columnNum === column) {
@@ -30,12 +31,6 @@ function App() {
     setCellGrid(updatedGrid);
   };
 
-  const handleCellClicked = (row: number, column: number, isBomb: boolean) => {
-    if (isBomb) {
-      alert("Game over!");
-    }
-  };
-
   return (
     <div className="App">
       {cellGrid.map((rows, i) => {
@@ -46,7 +41,6 @@ function App() {
             row={i}
             column={index}
             updateCell={handleUpdateCell}
-            onClick={handleCellClicked}
           />
         ));
         return (
