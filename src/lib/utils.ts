@@ -4,44 +4,18 @@ export const generateCells = (): Cell[][] => {
   return [
     [
       {
-        isBomb: false,
         adjacentBombsCount: 1,
         isHidden: true,
         isFlagged: false,
         isQuestion: false,
       },
       {
-        isBomb: false,
         adjacentBombsCount: 1,
         isHidden: true,
         isFlagged: false,
         isQuestion: false,
       },
       {
-        isBomb: false,
-        adjacentBombsCount: 1,
-        isHidden: true,
-        isFlagged: false,
-        isQuestion: false,
-      },
-    ],
-    [
-      {
-        isBomb: false,
-        adjacentBombsCount: 1,
-        isHidden: true,
-        isFlagged: false,
-        isQuestion: false,
-      },
-      {
-        isBomb: true,
-        adjacentBombsCount: 0,
-        isHidden: true,
-        isFlagged: false,
-        isQuestion: false,
-      },
-      {
-        isBomb: false,
         adjacentBombsCount: 1,
         isHidden: true,
         isFlagged: false,
@@ -50,21 +24,38 @@ export const generateCells = (): Cell[][] => {
     ],
     [
       {
-        isBomb: false,
         adjacentBombsCount: 1,
         isHidden: true,
         isFlagged: false,
         isQuestion: false,
       },
       {
-        isBomb: false,
+        adjacentBombsCount: null,
+        isHidden: true,
+        isFlagged: false,
+        isQuestion: false,
+      },
+      {
+        adjacentBombsCount: 1,
+        isHidden: true,
+        isFlagged: false,
+        isQuestion: false,
+      },
+    ],
+    [
+      {
         adjacentBombsCount: 1,
         isHidden: true,
         isFlagged: false,
         isQuestion: false,
       },
       {
-        isBomb: false,
+        adjacentBombsCount: 1,
+        isHidden: true,
+        isFlagged: false,
+        isQuestion: false,
+      },
+      {
         adjacentBombsCount: 1,
         isHidden: true,
         isFlagged: false,

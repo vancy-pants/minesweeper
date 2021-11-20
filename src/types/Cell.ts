@@ -1,6 +1,5 @@
 export type Cell = {
-  adjacentBombsCount: number;
-  isBomb: boolean;
+  adjacentBombsCount: number | null;
   isFlagged: boolean;
   isQuestion: boolean;
   isHidden: boolean;

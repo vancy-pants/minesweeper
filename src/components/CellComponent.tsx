@@ -15,11 +15,11 @@ export default function CellComponent({
   column,
   updateCell,
 }: CellProps) {
-  const { isBomb, isFlagged, isHidden, adjacentBombsCount } = cell;
+  const { isFlagged, isHidden, adjacentBombsCount } = cell;
 
   const handleClick = () => {
     console.log("normal click!");
-    if (isBomb) {
+    if (adjacentBombsCount === null) {
       alert("Game over!");
     }
     updateCell(row, column, { isHidden: false });
