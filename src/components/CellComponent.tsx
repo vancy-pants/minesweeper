@@ -1,4 +1,6 @@
 import { SyntheticEvent } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFlag, faBomb } from "@fortawesome/free-solid-svg-icons";
 import { Cell } from "../types/Cell";
 import "./styles.css";
 
@@ -37,8 +39,11 @@ export default function CellComponent({
       onContextMenu={handleRightClick}
       className={`cell ${isHidden ? "hidden" : "visible"}`}
     >
-      {isFlagged && isHidden ? "flag" : ""}
-      {!isHidden && adjacentBombsCount}
+      {isFlagged && isHidden && <FontAwesomeIcon icon={faFlag} />}
+      {!isHidden && !!adjacentBombsCount && adjacentBombsCount}
+      {!isHidden && adjacentBombsCount === null && (
+        <FontAwesomeIcon icon={faBomb} />
+      )}
     </div>
   );
 }
