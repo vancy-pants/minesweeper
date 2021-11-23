@@ -1,7 +1,7 @@
 import { SyntheticEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFlag, faBomb } from "@fortawesome/free-solid-svg-icons";
-import { Cell } from "../types/Cell";
+import { Cell } from "../../types/Cell";
 import "./styles.css";
 
 type CellProps = {
