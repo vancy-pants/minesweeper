@@ -10,7 +10,7 @@
   cursor: pointer;
 }
 
-.cell:hover {
+.cell:not(.visible):hover {
   background-color: blue;
 }
 
@@ -19,5 +19,6 @@
 }
 
 .visible {
-  /* TODO: */
+  background-color: black;
+  cursor: default;
 }
