@@ -1,7 +1,15 @@
 import { useState } from "react";
 import "./styles.css";
 
-export default function Setup() {
+interface SetupProps {
+  onStartGame: (
+    numberOfRows: string,
+    numberOfColumns: string,
+    numberOfBombs: string
+  ) => void;
+}
+
+export default function Setup({ onStartGame }: SetupProps) {
   const [numberOfRows, setNumberOfRows] = useState("3");
   const [numberOfColumns, setNumberOfColumns] = useState("3");
   const [numberOfBombs, setNumberOfBombs] = useState("3");
@@ -38,6 +46,16 @@ export default function Setup() {
           onChange={(e) => setNumberOfBombs(e.target.value)}
         />
       </div>
+
+      <br />
+
+      <button
+        onClick={() =>
+          onStartGame(numberOfRows, numberOfColumns, numberOfBombs)
+        }
+      >
+        Start Game
+      </button>
     </div>
   );
 }
