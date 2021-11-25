@@ -2,7 +2,7 @@ import { Cell } from "../types/Cell";
 
 const blankCell: Cell = {
   adjacentBombsCount: 0,
-  isHidden: true,
+  isHidden: false,
   isFlagged: false,
   isQuestion: false,
 };
@@ -11,9 +11,9 @@ const updateCell = (
   row: number,
   column: number,
   newValues: Partial<Cell>,
-  currentCells: Cell[][]
+  cells: Cell[][]
 ) => {
-  currentCells[row][column] = { ...currentCells[row][column], ...newValues };
+  cells[row][column] = { ...cells[row][column], ...newValues };
 };
 
 const generateBlankCells = (
@@ -23,13 +23,13 @@ const generateBlankCells = (
   const blankRow: Cell[] = [];
 
   for (let j = 1; j <= numberOfColumns; j++) {
-    blankRow.push(blankCell);
+    blankRow.push({ ...blankCell });
   }
 
   const cellGrid: Cell[][] = [];
 
   for (let k = 1; k <= numberOfRows; k++) {
-    cellGrid.push(blankRow);
+    cellGrid.push([...blankRow]);
   }
 
   return cellGrid;
@@ -46,7 +46,7 @@ const addBombs = (
   numberOfColumns: number,
   numberOfBombs: number,
   cells: Cell[][]
-) => {
+): string[] => {
   const bombCoordinates: string[] = [];
 
   for (let i = 1; i <= numberOfBombs; i++) {
@@ -62,6 +62,7 @@ const addBombs = (
 
   bombCoordinates.forEach((coordinates) => {
     const [rowNum, columnNum] = coordinates.split(",");
+
     updateCell(
       +rowNum,
       +columnNum,
@@ -71,6 +72,8 @@ const addBombs = (
       cells
     );
   });
+
+  return bombCoordinates;
 };
 
 export const getCellGrid = (
@@ -80,8 +83,12 @@ export const getCellGrid = (
 ): Cell[][] => {
   const cells = generateBlankCells(numberOfRows, numberOfColumns);
 
-  addBombs(numberOfRows, numberOfColumns, numberOfBombs, cells);
+  const bombCoordinates = addBombs(
+    numberOfRows,
+    numberOfColumns,
+    numberOfBombs,
+    cells
+  );
 
-  console.log("cells :>> ", cells);
   return cells;
 };
