@@ -24,9 +24,18 @@ const initialValues: InitialSetupValues = {
 };
 
 const SetupSchema = Yup.object().shape({
-  numberOfRows: Yup.number().required("Required"),
-  numberOfColumns: Yup.number().required("Required"),
-  numberOfBombs: Yup.number().required("Required"),
+  numberOfRows: Yup.number()
+    .min(1, "Must be greater than 0")
+    .max(10, "Must be less than 11")
+    .required("Required"),
+  numberOfColumns: Yup.number()
+    .min(1, "Must be greater than 0")
+    .max(10, "Must be less than 11")
+    .required("Required"),
+  numberOfBombs: Yup.number()
+    .min(1, "Must be greater than 0")
+    .max(10, "Must be less than 11")
+    .required("Required"),
 });
 
 export default function Setup({ onStartGame }: SetupProps) {
@@ -46,10 +55,11 @@ export default function Setup({ onStartGame }: SetupProps) {
             <Field
               id="numberOfRows"
               name="numberOfRows"
+              type="number"
               placeholder="Enter a Number"
             />
             {errors.numberOfRows && touched.numberOfRows ? (
-              <div>{errors.numberOfRows}</div>
+              <div className="error">{errors.numberOfRows}</div>
             ) : null}
           </div>
 
@@ -58,10 +68,11 @@ export default function Setup({ onStartGame }: SetupProps) {
             <Field
               id="numberOfColumns"
               name="numberOfColumns"
+              type="number"
               placeholder="Enter a Number"
             />
             {errors.numberOfColumns && touched.numberOfColumns ? (
-              <div>{errors.numberOfColumns}</div>
+              <div className="error">{errors.numberOfColumns}</div>
             ) : null}
           </div>
 
@@ -70,10 +81,11 @@ export default function Setup({ onStartGame }: SetupProps) {
             <Field
               id="numberOfBombs"
               name="numberOfBombs"
+              type="number"
               placeholder="Enter a Number"
             />
             {errors.numberOfBombs && touched.numberOfBombs ? (
-              <div>{errors.numberOfBombs}</div>
+              <div className="error">{errors.numberOfBombs}</div>
             ) : null}
           </div>
 
