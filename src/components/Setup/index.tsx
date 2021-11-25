@@ -36,6 +36,7 @@ const SetupSchema = Yup.object().shape({
     .min(1, "Must be greater than 0")
     .max(10, "Must be less than 11")
     .required("Required"),
+  // TODO: cannot have more bombs than cells check
 });
 
 export default function Setup({ onStartGame }: SetupProps) {
