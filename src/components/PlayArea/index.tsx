@@ -1,12 +1,13 @@
-import { useState } from "react";
 import CellComponent from "../Cell";
-import { generateCells } from "../../lib/utils";
 import { Cell } from "../../types/Cell";
 import "./styles.css";
 
-export default function PlayArea() {
-  const [cellGrid, setCellGrid] = useState(() => generateCells());
+interface PlayAreaProps {
+  cellGrid: Cell[][];
+  setCellGrid: React.Dispatch<React.SetStateAction<Cell[][]>>;
+}
 
+export default function PlayArea({ cellGrid, setCellGrid }: PlayAreaProps) {
   const handleUpdateCell = (
     row: number,
     column: number,
