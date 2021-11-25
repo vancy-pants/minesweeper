@@ -25,11 +25,11 @@ const initialValues: InitialSetupValues = {
 
 const SetupSchema = Yup.object().shape({
   numberOfRows: Yup.number()
-    .min(1, "Must be greater than 0")
+    .min(2, "Must be greater than 1")
     .max(10, "Must be less than 11")
     .required("Required"),
   numberOfColumns: Yup.number()
-    .min(1, "Must be greater than 0")
+    .min(2, "Must be greater than 1")
     .max(10, "Must be less than 11")
     .required("Required"),
   numberOfBombs: Yup.number()
