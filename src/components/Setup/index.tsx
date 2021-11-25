@@ -18,9 +18,9 @@ interface InitialSetupValues {
 }
 
 const initialValues: InitialSetupValues = {
-  numberOfRows: 3,
-  numberOfColumns: 3,
-  numberOfBombs: 1,
+  numberOfRows: 10,
+  numberOfColumns: 10,
+  numberOfBombs: 3,
 };
 
 const SetupSchema = Yup.object().shape({
