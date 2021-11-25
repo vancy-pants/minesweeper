@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Setup from "./components/Setup";
 import PlayArea from "./components/PlayArea";
-import { generateCells } from "./lib/utils";
+import { getCellGrid } from "./lib/utils";
 import { Cell } from "./types/Cell";
 import "./App.css";
 
@@ -14,7 +14,7 @@ function App() {
     numberOfColumns: number,
     numberOfBombs: number
   ) => {
-    const cells = generateCells(numberOfRows, numberOfColumns, numberOfBombs);
+    const cells = getCellGrid(numberOfRows, numberOfColumns, numberOfBombs);
 
     setCellGrid(cells);
     setShowSetup(false);
