@@ -64,7 +64,7 @@ export default function Setup({ onStartGame }: SetupProps) {
           </div>
 
           <div className="form-item">
-            <label htmlFor="numberOfColumns">Number of Rows</label>
+            <label htmlFor="numberOfColumns">Number of Columns</label>
             <Field
               id="numberOfColumns"
               name="numberOfColumns"
@@ -77,7 +77,7 @@ export default function Setup({ onStartGame }: SetupProps) {
           </div>
 
           <div className="form-item">
-            <label htmlFor="numberOfBombs">Number of Rows</label>
+            <label htmlFor="numberOfBombs">Number of Bombs</label>
             <Field
               id="numberOfBombs"
               name="numberOfBombs"
