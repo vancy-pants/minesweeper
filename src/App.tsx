@@ -7,9 +7,9 @@ function App() {
   const [showSetup, setShowSetup] = useState(true);
 
   const handleStartGame = (
-    numberOfRows: string,
-    numberOfColumns: string,
-    numberOfBombs: string
+    numberOfRows: number,
+    numberOfColumns: number,
+    numberOfBombs: number
   ) => {
     console.log("numberOfRows :>> ", numberOfRows);
     console.log("numberOfColumns :>> ", numberOfColumns);
