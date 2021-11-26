@@ -20,17 +20,17 @@ interface InitialSetupValues {
 const initialValues: InitialSetupValues = {
   numberOfRows: 10,
   numberOfColumns: 10,
-  numberOfBombs: 3,
+  numberOfBombs: 10,
 };
 
 const SetupSchema = Yup.object().shape({
   numberOfRows: Yup.number()
     .min(2, "Must be greater than 1")
-    .max(10, "Must be less than 11")
+    .max(15, "No more than 15 rows")
     .required("Required"),
   numberOfColumns: Yup.number()
     .min(2, "Must be greater than 1")
-    .max(10, "Must be less than 11")
+    .max(15, "No more than 15 columns")
     .required("Required"),
   numberOfBombs: Yup.number()
     .min(1, "Must be greater than 0")
