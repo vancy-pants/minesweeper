@@ -5,9 +5,14 @@ import "./styles.css";
 interface PlayAreaProps {
   cellGrid: Cell[][];
   setCellGrid: React.Dispatch<React.SetStateAction<Cell[][]>>;
+  setShowSetup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function PlayArea({ cellGrid, setCellGrid }: PlayAreaProps) {
+export default function PlayArea({
+  cellGrid,
+  setCellGrid,
+  setShowSetup,
+}: PlayAreaProps) {
   const handleUpdateCell = (
     row: number,
     column: number,
@@ -50,6 +55,8 @@ export default function PlayArea({ cellGrid, setCellGrid }: PlayAreaProps) {
           </div>
         );
       })}
+
+      <button onClick={() => setShowSetup(true)}>Reset</button>
     </div>
   );
 }

@@ -23,7 +23,13 @@ function App() {
   return (
     <div className="App">
       {showSetup && <Setup onStartGame={handleStartGame} />}
-      {!showSetup && <PlayArea cellGrid={cellGrid} setCellGrid={setCellGrid} />}
+      {!showSetup && (
+        <PlayArea
+          cellGrid={cellGrid}
+          setCellGrid={setCellGrid}
+          setShowSetup={setShowSetup}
+        />
+      )}
     </div>
   );
 }
