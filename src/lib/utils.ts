@@ -7,6 +7,9 @@ const blankCell: Cell = {
   isQuestion: false,
 };
 
+/**
+ * @desc this updater is destructive
+ */
 const updateCell = (
   row: number,
   column: number,
@@ -16,6 +19,9 @@ const updateCell = (
   cells[row][column] = { ...cells[row][column], ...newValues };
 };
 
+/**
+ * @desc this generates the initial set of blank cells
+ */
 const generateBlankCells = (
   numberOfRows: number,
   numberOfColumns: number
@@ -35,12 +41,18 @@ const generateBlankCells = (
   return cellGrid;
 };
 
+/**
+ * @desc gets the coordinates where a bomb will be placed
+ */
 const getBombCoordinates = (rowMax: number, columnMax: number) => {
   const bombRow = Math.floor(Math.random() * rowMax);
   const bombColumn = Math.floor(Math.random() * columnMax);
   return `${bombRow},${bombColumn}`;
 };
 
+/**
+ * @desc adds the bombs to the cell grid
+ */
 const addBombs = (
   numberOfRows: number,
   numberOfColumns: number,
@@ -76,6 +88,9 @@ const addBombs = (
   return bombCoordinates;
 };
 
+/**
+ * @desc calculates the number of adjacent bombs to for each cell
+ */
 const calculateAdjacentBombs = (bombCoordinates: string[], cells: Cell[][]) => {
   bombCoordinates.forEach((coordinates) => {
     const [rowNum, columnNum] = coordinates.split(",");
