@@ -2,7 +2,7 @@ import { Cell } from "../types/Cell";
 
 const blankCell: Cell = {
   adjacentBombsCount: 0,
-  isHidden: false,
+  isHidden: true,
   isFlagged: false,
   isQuestion: false,
 };
@@ -76,6 +76,132 @@ const addBombs = (
   return bombCoordinates;
 };
 
+const calculateAdjacentBombs = (bombCoordinates: string[], cells: Cell[][]) => {
+  bombCoordinates.forEach((coordinates) => {
+    const [rowNum, columnNum] = coordinates.split(",");
+
+    let isRow0 = +rowNum === 0;
+    let isColumn0 = +columnNum === 0;
+    let isMaxRow = +rowNum === cells.length - 1;
+    let isMaxColumn = +columnNum === cells[0].length - 1;
+
+    // The previous row's cells
+    if (!isRow0 && !isColumn0) {
+      updateCell(
+        +rowNum - 1,
+        +columnNum - 1,
+        {
+          adjacentBombsCount:
+            cells[+rowNum - 1][+columnNum - 1].adjacentBombsCount !== null
+              ? cells[+rowNum - 1][+columnNum - 1].adjacentBombsCount! + 1
+              : null,
+        },
+        cells
+      );
+    }
+
+    if (!isRow0) {
+      updateCell(
+        +rowNum - 1,
+        +columnNum,
+        {
+          adjacentBombsCount:
+            cells[+rowNum - 1][+columnNum].adjacentBombsCount !== null
+              ? cells[+rowNum - 1][+columnNum].adjacentBombsCount! + 1
+              : null,
+        },
+        cells
+      );
+    }
+
+    if (!isRow0 && !isMaxColumn) {
+      updateCell(
+        +rowNum - 1,
+        +columnNum + 1,
+        {
+          adjacentBombsCount:
+            cells[+rowNum - 1][+columnNum + 1].adjacentBombsCount !== null
+              ? cells[+rowNum - 1][+columnNum + 1].adjacentBombsCount! + 1
+              : null,
+        },
+        cells
+      );
+    }
+
+    // The same row's cells
+    if (!isColumn0) {
+      updateCell(
+        +rowNum,
+        +columnNum - 1,
+        {
+          adjacentBombsCount:
+            cells[+rowNum][+columnNum - 1].adjacentBombsCount !== null
+              ? cells[+rowNum][+columnNum - 1].adjacentBombsCount! + 1
+              : null,
+        },
+        cells
+      );
+    }
+
+    if (!isMaxColumn) {
+      updateCell(
+        +rowNum,
+        +columnNum + 1,
+        {
+          adjacentBombsCount:
+            cells[+rowNum][+columnNum + 1].adjacentBombsCount !== null
+              ? cells[+rowNum][+columnNum + 1].adjacentBombsCount! + 1
+              : null,
+        },
+        cells
+      );
+    }
+
+    // The next row's cells
+    if (!isMaxRow && !isColumn0) {
+      updateCell(
+        +rowNum + 1,
+        +columnNum - 1,
+        {
+          adjacentBombsCount:
+            cells[+rowNum + 1][+columnNum - 1].adjacentBombsCount !== null
+              ? cells[+rowNum + 1][+columnNum - 1].adjacentBombsCount! + 1
+              : null,
+        },
+        cells
+      );
+    }
+
+    if (!isMaxRow) {
+      updateCell(
+        +rowNum + 1,
+        +columnNum,
+        {
+          adjacentBombsCount:
+            cells[+rowNum + 1][+columnNum].adjacentBombsCount !== null
+              ? cells[+rowNum + 1][+columnNum].adjacentBombsCount! + 1
+              : null,
+        },
+        cells
+      );
+    }
+
+    if (!isMaxRow && !isMaxColumn) {
+      updateCell(
+        +rowNum + 1,
+        +columnNum + 1,
+        {
+          adjacentBombsCount:
+            cells[+rowNum + 1][+columnNum + 1].adjacentBombsCount !== null
+              ? cells[+rowNum + 1][+columnNum + 1].adjacentBombsCount! + 1
+              : null,
+        },
+        cells
+      );
+    }
+  });
+};
+
 export const getCellGrid = (
   numberOfRows: number,
   numberOfColumns: number,
@@ -89,6 +215,8 @@ export const getCellGrid = (
     numberOfBombs,
     cells
   );
+
+  calculateAdjacentBombs(bombCoordinates, cells);
 
   return cells;
 };
