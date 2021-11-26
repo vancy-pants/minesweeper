@@ -1,6 +1,5 @@
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-
 import "./styles.css";
 
 interface SetupProps {
